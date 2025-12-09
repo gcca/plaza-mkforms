@@ -1,13 +1,12 @@
 import io
-import lzma
 
-import django.forms
 import django.http
 import django.urls
 import django.views.generic
 import reportlab.lib.pagesizes
 import reportlab.pdfgen.canvas
 
+import plaza_mkforms.forms
 import plaza_mkforms.models
 
 
@@ -54,23 +53,6 @@ class PDFView(django.views.generic.DetailView):
         return response
 
 
-class SettingForm(django.forms.ModelForm):
-    logo = django.forms.FileField(required=False)
-
-    class Meta:
-        model = plaza_mkforms.models.Setting
-        fields = ["name", "logo"]
-
-    def save(self, commit=True):
-        instance = super().save(commit=False)
-        if self.cleaned_data.get("logo"):
-            data = self.cleaned_data["logo"].read()
-            instance.logo = lzma.compress(data, preset=lzma.PRESET_EXTREME)
-        if commit:
-            instance.save()
-        return instance
-
-
 class SettingListView(django.views.generic.ListView):
     model = plaza_mkforms.models.Setting
     template_name = "plaza_mkforms/setting/list.html"
@@ -78,6 +60,6 @@ class SettingListView(django.views.generic.ListView):
 
 class SettingUpdateView(django.views.generic.UpdateView):
     model = plaza_mkforms.models.Setting
-    form_class = SettingForm
+    form_class = plaza_mkforms.forms.SettingForm
     template_name = "plaza_mkforms/setting/edit.html"
     success_url = django.urls.reverse_lazy("plaza-mkforms:setting-list")
