@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DocumentAA List</title>
+</head>
+<body>
+    <h1>DocumentAA List</h1>
+    <ul>
+        {% for document in object_list %}
+        <li>{{ document.name }} - Amount: {{ document.amount }} - Quantity: {{ document.quantity }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'plaza-mkforms:documentaa-create' %}">Create New DocumentAA</a>
+</body>
+</html>
