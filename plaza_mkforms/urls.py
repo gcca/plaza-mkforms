@@ -26,6 +26,11 @@ urlpatterns = [
         name="documentaa-pdf",
     ),
     django.urls.path(
+        "setting/list/",
+        plaza_mkforms.views.SettingListView.as_view(),
+        name="setting-list",
+    ),
+    django.urls.path(
         "setting/<int:pk>/edit/",
         plaza_mkforms.views.SettingUpdateView.as_view(),
         name="setting-edit",

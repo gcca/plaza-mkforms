@@ -69,8 +69,13 @@ class SettingForm(django.forms.ModelForm):
         return instance
 
 
+class SettingListView(django.views.generic.ListView):
+    model = plaza_mkforms.models.Setting
+    template_name = "plaza_mkforms/setting/list.html"
+
+
 class SettingUpdateView(django.views.generic.UpdateView):
     model = plaza_mkforms.models.Setting
     form_class = SettingForm
     template_name = "plaza_mkforms/setting/edit.html"
-    success_url = django.urls.reverse_lazy("plaza-mkforms:documentaa-list")
+    success_url = django.urls.reverse_lazy("plaza-mkforms:setting-list")

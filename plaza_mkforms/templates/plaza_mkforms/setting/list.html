@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Setting List</title>
+</head>
+<body>
+    <h1>Setting List</h1>
+    <ul>
+        {% for setting in object_list %}
+        <li><a href="{% url 'plaza-mkforms:setting-edit' pk=setting.pk %}">{{ setting.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'plaza-mkforms:documentaa-list' %}">Back to DocumentAA List</a>
+</body>
+</html>
