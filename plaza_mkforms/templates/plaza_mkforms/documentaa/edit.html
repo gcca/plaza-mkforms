@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit DocumentAA</title>
+</head>
+<body>
+    <h1>Edit DocumentAA</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <p><a href="{% url 'plaza-mkforms:documentaa-pdf' pk=object.pk %}">View PDF</a></p>
+</body>
+</html>

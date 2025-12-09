@@ -15,4 +15,14 @@ urlpatterns = [
         plaza_mkforms.views.DocumentAACreateView.as_view(),
         name="documentaa-create",
     ),
+    django.urls.path(
+        "documentaa/<int:pk>/edit/",
+        plaza_mkforms.views.DocumentAAEditView.as_view(),
+        name="documentaa-edit",
+    ),
+    django.urls.path(
+        "documentaa/<int:pk>/pdf/",
+        plaza_mkforms.views.PDFView.as_view(),
+        name="documentaa-pdf",
+    ),
 ]
