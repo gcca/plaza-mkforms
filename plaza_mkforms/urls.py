@@ -1,18 +1,18 @@
-from django.urls import path
+import django.urls
 
-from . import views
+import plaza_mkforms.views
 
 app_name = "plaza-mkforms"
 
 urlpatterns = [
-    path(
+    django.urls.path(
         "documentaa/list/",
-        views.DocumentAAListView.as_view(),
+        plaza_mkforms.views.DocumentAAListView.as_view(),
         name="documentaa-list",
     ),
-    path(
+    django.urls.path(
         "documentaa/create/",
-        views.DocumentAACreateView.as_view(),
+        plaza_mkforms.views.DocumentAACreateView.as_view(),
         name="documentaa-create",
     ),
 ]

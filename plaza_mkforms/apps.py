@@ -1,5 +1,5 @@
-from django.apps import AppConfig
+import django.apps
 
 
-class PlazaMkformsConfig(AppConfig):
+class PlazaMkformsConfig(django.apps.AppConfig):
     name = "plaza_mkforms"
