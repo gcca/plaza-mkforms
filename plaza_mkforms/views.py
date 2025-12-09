@@ -7,29 +7,38 @@ import reportlab.lib.pagesizes
 import reportlab.pdfgen.canvas
 
 import plaza_mkforms.forms
+import plaza_mkforms.mixins
 import plaza_mkforms.models
 
 
-class DocumentAAListView(django.views.generic.ListView):
+class DocumentAAListView(
+    plaza_mkforms.mixins.MkFormsMixin, django.views.generic.ListView
+):
     model = plaza_mkforms.models.DocumentAA
     template_name = "plaza_mkforms/documentaa/list.html"
 
 
-class DocumentAACreateView(django.views.generic.CreateView):
+class DocumentAACreateView(
+    plaza_mkforms.mixins.MkFormsMixin, django.views.generic.CreateView
+):
     model = plaza_mkforms.models.DocumentAA
     fields = ["name", "amount", "quantity"]
     template_name = "plaza_mkforms/documentaa/create.html"
     success_url = django.urls.reverse_lazy("plaza-mkforms:documentaa-list")
 
 
-class DocumentAAEditView(django.views.generic.UpdateView):
+class DocumentAAEditView(
+    plaza_mkforms.mixins.MkFormsMixin, django.views.generic.UpdateView
+):
     model = plaza_mkforms.models.DocumentAA
     fields = ["name", "amount", "quantity"]
     template_name = "plaza_mkforms/documentaa/edit.html"
     success_url = django.urls.reverse_lazy("plaza-mkforms:documentaa-list")
 
 
-class PDFView(django.views.generic.DetailView):
+class PDFView(
+    plaza_mkforms.mixins.MkFormsMixin, django.views.generic.DetailView
+):
     model = plaza_mkforms.models.DocumentAA
 
     def get(self, request, *args, **kwargs):
@@ -53,12 +62,16 @@ class PDFView(django.views.generic.DetailView):
         return response
 
 
-class SettingListView(django.views.generic.ListView):
+class SettingListView(
+    plaza_mkforms.mixins.MkFormsMixin, django.views.generic.ListView
+):
     model = plaza_mkforms.models.Setting
     template_name = "plaza_mkforms/setting/list.html"
 
 
-class SettingUpdateView(django.views.generic.UpdateView):
+class SettingUpdateView(
+    plaza_mkforms.mixins.MkFormsMixin, django.views.generic.UpdateView
+):
     model = plaza_mkforms.models.Setting
     form_class = plaza_mkforms.forms.SettingForm
     template_name = "plaza_mkforms/setting/edit.html"
