@@ -4,7 +4,7 @@ import django.http
 import django.urls
 import django.views.generic
 import reportlab.lib.pagesizes
-import reportlab.pdfgen
+import reportlab.pdfgen.canvas
 
 import plaza_mkforms.models
 
@@ -33,13 +33,10 @@ class PDFView(django.views.generic.DetailView):
 
     def get(self, request, *args, **kwargs):
         document = self.get_object()
-        # Create a PDF response
         response = django.http.HttpResponse(content_type="application/pdf")
         response["Content-Disposition"] = (
             f'inline; filename="{document.name}.pdf"'
         )
-
-        # Generate PDF using reportlab
         buffer = io.BytesIO()
         p = reportlab.pdfgen.canvas.Canvas(
             buffer, pagesize=reportlab.lib.pagesizes.letter

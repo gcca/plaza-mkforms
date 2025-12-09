@@ -5,11 +5,20 @@
 </head>
 <body>
     <h1>Edit DocumentAA</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+    <table border="1">
+        <tr>
+            <td>Name:</td>
+            <td>{{ object.name }}</td>
+        </tr>
+        <tr>
+            <td>Amount:</td>
+            <td>{{ object.amount }}</td>
+        </tr>
+        <tr>
+            <td>Quantity:</td>
+            <td>{{ object.quantity }}</td>
+        </tr>
+    </table>
     <p><a href="{% url 'plaza-mkforms:documentaa-pdf' pk=object.pk %}">View PDF</a></p>
 </body>
 </html>
