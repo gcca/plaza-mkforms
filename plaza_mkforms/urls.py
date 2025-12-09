@@ -1,3 +1,9 @@
+"""URL patterns for the plaza_mkforms app.
+
+This module defines the URL routing for the plaza_mkforms app, mapping URLs to their
+corresponding views for handling DocumentAA and Setting resources.
+"""
+
 import django.urls
 
 import plaza_mkforms.views
