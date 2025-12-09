@@ -1,5 +1,6 @@
 import io
 
+import django.forms
 import django.http
 import django.urls
 import django.views.generic
@@ -50,3 +51,26 @@ class PDFView(django.views.generic.DetailView):
         buffer.close()
         response.write(pdf)
         return response
+
+
+class SettingForm(django.forms.ModelForm):
+    logo = django.forms.FileField(required=False)
+
+    class Meta:
+        model = plaza_mkforms.models.Setting
+        fields = ["name", "logo"]
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.cleaned_data.get("logo"):
+            instance.logo = self.cleaned_data["logo"].read()
+        if commit:
+            instance.save()
+        return instance
+
+
+class SettingUpdateView(django.views.generic.UpdateView):
+    model = plaza_mkforms.models.Setting
+    form_class = SettingForm
+    template_name = "plaza_mkforms/setting/edit.html"
+    success_url = django.urls.reverse_lazy("plaza-mkforms:documentaa-list")

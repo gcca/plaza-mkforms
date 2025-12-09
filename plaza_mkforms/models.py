@@ -10,7 +10,7 @@ class DocumentAA(django.db.models.Model):
 
 class Setting(django.db.models.Model):
     name = django.db.models.CharField(max_length=100)
-    logo = django.db.models.BinaryField(null=True)
+    logo = django.db.models.BinaryField(null=True, editable=True)
 
     class Meta:
         indexes = [django.db.models.Index(fields=["name"])]
